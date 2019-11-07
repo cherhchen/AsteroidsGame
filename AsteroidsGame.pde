@@ -9,4 +9,9 @@ public void draw()
 	background(0);
 	bob.show();
 }
+public void keyPressed() {
+	if (keyCode == 65) {
+		System.out.print("yay");
+	}
+}
 
