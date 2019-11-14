@@ -12,26 +12,26 @@ public void setup()
 public void draw() 
 {
 	background(0);
-	bob.show();
-	bob.move();
 	for (int j = 0; j < twinkle.length; j++) {
 		twinkle[j].show();
 	}
+	bob.show();
+	bob.move();
 }
 public void keyPressed() {
 	if (keyCode == 37) {
 		bob.turn(-5);
 	}
 	if (keyCode == 39) {
-		bob.myPointDirection+=5;
+		bob.turn(5);
 	}
 	if (keyCode == 38) {
-		bob.myDirectionX+=0.7;
-		bob.myDirectionY+=0.7;
+		bob.accelerate(0.2);
 	}
 	if (keyCode == 40) {
-		bob.myCenterX = Math.random()*400;
-		bob.myCenterY = Math.random()*400;
+		bob.setCenterX(Math.random()*400);
+		bob.setCenterY(Math.random()*400);
+		bob.turn((int)(Math.random()*360));
 		bob.setDirectionX(0);
 		bob.setDirectionY(0);
 	}

@@ -1,7 +1,7 @@
 class Star //note that this class does NOT extend Floater
 {
-	double x, y, siz;
-	int col;
+	private double x, y, siz;
+	private int col;
   public Star() 
   {
   	x = Math.random()*800;
