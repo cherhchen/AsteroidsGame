@@ -31,4 +31,29 @@ class Spaceship extends Floater
     public void setCenterY(double y) {
     	myCenterY = y;
     }
+    public void show() {
+    	fill(myColor);   
+    	stroke(myColor);    
+    	translate((float)myCenterX, (float)myCenterY);
+    	float dRadians = (float)(myPointDirection*(Math.PI/180));
+    	rotate(dRadians);
+    	beginShape();
+    	for (int nI = 0; nI < corners; nI++)
+    	{
+      		vertex(xCorners[nI], yCorners[nI]);
+    	}
+    	endShape(CLOSE);
+
+    	float poofx = -8;
+    	float poofy = 0;
+    	if (keyCode == 38) 
+    	{
+    	fill(217, 86, 50);
+    	stroke(250, 250, 55);
+    	ellipse(poofx, poofy, 10, 4);
+    	}
+
+    	rotate(-1*dRadians);
+    	translate(-1*(float)myCenterX, -1*(float)myCenterY);
+    }
 }
