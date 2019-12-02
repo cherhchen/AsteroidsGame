@@ -1,6 +1,6 @@
 Spaceship bob;
 Star[] twinkle;
-Asteroid rock;
+ArrayList <Asteroid> rock;
 public void setup() 
 {
 	size(800,800);
@@ -9,7 +9,10 @@ public void setup()
   	for (int i = 0; i < twinkle.length; i++) {
   		twinkle[i] = new Star();
   	}
-  	rock = new Asteroid();
+  	rock = new ArrayList <Asteroid> ();
+  	for (int r = 0; r < 50; r++) {
+  		rock.add(new Asteroid());
+  	}
 }
 public void draw() 
 {
@@ -19,7 +22,10 @@ public void draw()
 	}
 	bob.show();
 	bob.move();
-	rock.show();
+	for (int q = 0; q < rock.size(); q++) {
+		rock.get(q).show();
+		rock.get(q).move();
+	}
 }
 public void keyPressed() {
 	if (keyCode == 37) {
