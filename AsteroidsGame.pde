@@ -10,7 +10,7 @@ public void setup()
   		twinkle[i] = new Star();
   	}
   	rock = new ArrayList <Asteroid> ();
-  	for (int r = 0; r < 50; r++) {
+  	for (int r = 0; r < 15; r++) {
   		rock.add(new Asteroid());
   	}
 }
