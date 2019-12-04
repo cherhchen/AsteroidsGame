@@ -10,7 +10,7 @@ public void setup()
   		twinkle[i] = new Star();
   	}
   	rock = new ArrayList <Asteroid> ();
-  	for (int r = 0; r < 15; r++) {
+  	for (int r = 0; r < 20; r++) {
   		rock.add(new Asteroid());
   	}
 }
@@ -24,7 +24,14 @@ public void draw()
 	bob.move();
 	for (int q = 0; q < rock.size(); q++) {
 		rock.get(q).show();
-		rock.get(q).move();
+		if (dist((float)rock.get(q).getCenterX(), (float)rock.get(q).getCenterY(), (float)bob.getCenterX(), (float)bob.getCenterY()) < 35)
+		{
+			rock.remove(rock.get(q));
+		}
+		else 
+		{
+			rock.get(q).move();
+		}
 	}
 }
 public void keyPressed() {

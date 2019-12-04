@@ -33,13 +33,13 @@ class Asteroid extends Floater
 		turn(rotSpeed);
 		super.move();
 	}
-	public void setCenterX(double m) 
+	public double getCenterX() 
 	{
-		myCenterX = m;
+		return myCenterX;
 	}
-	public void setCenterY(double n) 
+	public double getCenterY() 
 	{
-		myCenterY = n;
+		return myCenterY;
 	}
 	public void setDirectionX(double m) 
 	{
