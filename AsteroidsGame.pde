@@ -1,6 +1,7 @@
 Spaceship bob;
 Star[] twinkle;
 ArrayList <Asteroid> rock;
+Bullet ammo;
 public void setup() 
 {
 	size(800,800);
@@ -13,10 +14,12 @@ public void setup()
   	for (int r = 0; r < 20; r++) {
   		rock.add(new Asteroid());
   	}
+  	ammo = new Bullet(bob);
 }
 public void draw() 
 {
 	background(0);
+	ammo.show();
 	for (int j = 0; j < twinkle.length; j++) {
 		twinkle[j].show();
 	}
