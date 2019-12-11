@@ -1,7 +1,7 @@
 Spaceship bob;
 Star[] twinkle;
 ArrayList <Asteroid> rock;
-Bullet ammo;
+ArrayList <Bullet> ammo;
 public void setup() 
 {
 	size(800,800);
@@ -14,29 +14,44 @@ public void setup()
   	for (int r = 0; r < 20; r++) {
   		rock.add(new Asteroid());
   	}
-  	ammo = new Bullet(bob);
+  	ammo = new ArrayList <Bullet> ();
 }
 public void draw() 
 {
 	background(0);
-	ammo.show();
+
 	for (int j = 0; j < twinkle.length; j++) {
 		twinkle[j].show();
 	}
+
 	bob.show();
 	bob.move();
+
 	for (int q = 0; q < rock.size(); q++) {
 		rock.get(q).show();
 		if (dist((float)rock.get(q).getCenterX(), (float)rock.get(q).getCenterY(), (float)bob.getCenterX(), (float)bob.getCenterY()) < 35)
-		{
+			{
 			rock.remove(rock.get(q));
-		}
+			}
 		else 
-		{
+			{
 			rock.get(q).move();
+			}
+	}
+
+	for (int a = 0; a < ammo.size(); a++) {
+		ammo.get(a).show();
+		ammo.get(a).move();
+		for (int b = 0; b < rock.size(); b++) {
+			if (dist((float)rock.get(b).getCenterX(), (float)rock.get(b).getCenterY(), (float)ammo.get(a).getCenterX(), (float)ammo.get(a).getCenterY()) < 40) {
+				rock.remove(rock.get(b));
+				ammo.remove(ammo.get(a));
+				break;
+			}
 		}
 	}
 }
+
 public void keyPressed() {
 	if (keyCode == 37) {
 		bob.turn(-5);
@@ -48,11 +63,14 @@ public void keyPressed() {
 		bob.accelerate(0.2);
 	}
 	if (keyCode == 40) {
-		bob.setCenterX(Math.random()*400);
-		bob.setCenterY(Math.random()*400);
+		bob.setCenterX(Math.random()*800);
+		bob.setCenterY(Math.random()*800);
 		bob.turn((int)(Math.random()*360));
 		bob.setDirectionX(0);
 		bob.setDirectionY(0);
+	}
+	if (keyCode == 32) {
+		ammo.add(new Bullet(bob));
 	}
 }
 
