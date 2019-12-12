@@ -41,6 +41,7 @@ public void draw()
 
 	for (int a = 0; a < ammo.size(); a++) {
 		ammo.get(a).show();
+		//ammo.get(a).accelerate(0.1);
 		ammo.get(a).move();
 		for (int b = 0; b < rock.size(); b++) {
 			if (dist((float)rock.get(b).getCenterX(), (float)rock.get(b).getCenterY(), (float)ammo.get(a).getCenterX(), (float)ammo.get(a).getCenterY()) < 40) {
@@ -48,6 +49,16 @@ public void draw()
 				ammo.remove(ammo.get(a));
 				break;
 			}
+		}
+	}
+	for (int a = 0; a < ammo.size(); a++) {
+		if (ammo.get(a).getCenterX() > 800 || ammo.get(a).getCenterX() < 0 || ammo.get(a).getCenterY() > 800 || ammo.get(a).getCenterY() < 0) {
+			ammo.remove(ammo.get(a));
+		}
+	}
+	if (rock.size() < 17) {
+		for (int r = 0; r < 1; r++) {
+			rock.add(new Asteroid());
 		}
 	}
 }
