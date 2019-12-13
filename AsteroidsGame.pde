@@ -2,6 +2,9 @@ Spaceship bob;
 Star[] twinkle;
 ArrayList <Asteroid> rock;
 ArrayList <Bullet> ammo;
+int score; 
+boolean bullseye;
+boolean hit;
 public void setup() 
 {
 	size(800,800);
@@ -15,6 +18,9 @@ public void setup()
   		rock.add(new Asteroid());
   	}
   	ammo = new ArrayList <Bullet> ();
+  	score = 0;
+  	bullseye = false;
+  	hit = false;
 }
 public void draw() 
 {
@@ -32,22 +38,30 @@ public void draw()
 		if (dist((float)rock.get(q).getCenterX(), (float)rock.get(q).getCenterY(), (float)bob.getCenterX(), (float)bob.getCenterY()) < 35)
 			{
 			rock.remove(rock.get(q));
+			score-=10;
+			hit = true;
 			}
 		else 
 			{
 			rock.get(q).move();
+			hit = false;
 			}
 	}
 
 	for (int a = 0; a < ammo.size(); a++) {
 		ammo.get(a).show();
-		//ammo.get(a).accelerate(0.1);
+		ammo.get(a).accelerate(0.1);
 		ammo.get(a).move();
 		for (int b = 0; b < rock.size(); b++) {
 			if (dist((float)rock.get(b).getCenterX(), (float)rock.get(b).getCenterY(), (float)ammo.get(a).getCenterX(), (float)ammo.get(a).getCenterY()) < 40) {
 				rock.remove(rock.get(b));
 				ammo.remove(ammo.get(a));
+				score+=10;
+				bullseye = true;
 				break;
+			}
+			else {
+				bullseye = false;
 			}
 		}
 	}
@@ -61,6 +75,17 @@ public void draw()
 			rock.add(new Asteroid());
 		}
 	}
+	if (hit == true) {
+		fill(255, 0, 0);
+	}
+	else if (bullseye == true) {
+		fill(0, 255, 0);
+	}
+	else {
+		fill(169, 249, 249); 
+	}
+	textSize(25);
+	text("Score: " + score, 600, 30);
 }
 
 public void keyPressed() {
