@@ -3,8 +3,6 @@ Star[] twinkle;
 ArrayList <Asteroid> rock;
 ArrayList <Bullet> ammo;
 int score; 
-boolean bullseye;
-boolean hit;
 public void setup() 
 {
 	size(800,800);
@@ -19,8 +17,6 @@ public void setup()
   	}
   	ammo = new ArrayList <Bullet> ();
   	score = 0;
-  	bullseye = false;
-  	hit = false;
 }
 public void draw() 
 {
@@ -39,12 +35,10 @@ public void draw()
 			{
 			rock.remove(rock.get(q));
 			score-=10;
-			hit = true;
 			}
 		else 
 			{
 			rock.get(q).move();
-			hit = false;
 			}
 	}
 
@@ -57,11 +51,7 @@ public void draw()
 				rock.remove(rock.get(b));
 				ammo.remove(ammo.get(a));
 				score+=10;
-				bullseye = true;
 				break;
-			}
-			else {
-				bullseye = false;
 			}
 		}
 	}
@@ -75,15 +65,7 @@ public void draw()
 			rock.add(new Asteroid());
 		}
 	}
-	if (hit == true) {
-		fill(255, 0, 0);
-	}
-	else if (bullseye == true) {
-		fill(0, 255, 0);
-	}
-	else {
-		fill(169, 249, 249); 
-	}
+	fill(169, 249, 249); 
 	textSize(25);
 	text("Score: " + score, 600, 30);
 }
